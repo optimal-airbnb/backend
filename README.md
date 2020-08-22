@@ -2,8 +2,11 @@
 
 ## Topics
 - **enpoint api**
-- # users router endpoint
- - /api/register  **register endpoint for users**
+- # users router endpoint 
+
+**register endpoint for users**
+ ### /api/register  
+
 
 ## Data Schema:
 
