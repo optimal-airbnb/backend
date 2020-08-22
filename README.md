@@ -5,6 +5,11 @@
 - # users router endpoint 
 
 **register endpoint for users**
+  **name**
+  **username**
+  **password**
+  **email**
+ 
 
  ## /api/register  
 
