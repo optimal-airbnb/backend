@@ -17,9 +17,10 @@
 ## /api/login **login endpoint for users**
 user login example: ## password will return the token into client side.
 ## Data Schema: 
- - {
+ ```js
+    {
       "username": "Robin",
       "password": "rob003",
     }
-
+```
 
