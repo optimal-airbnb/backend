@@ -5,7 +5,8 @@
 - # users router endpoint 
 
 **register endpoint for users**
- ### /api/register  
+
+ ## /api/register  
 
 
 ## Data Schema:
@@ -18,8 +19,10 @@
       "email": "robbin@robbin.com",
     }
 ```
+**login endpoint for users**
 
-## /api/login **login endpoint for users**
+## /api/login 
+
 user login example: ## password will return the token into client side.
 ## Data Schema: 
  ```js
