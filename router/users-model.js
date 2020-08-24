@@ -12,9 +12,11 @@ module.exports = {
 function find() {
   return db("users");
 }
-function findBy(user) {
-  return db("users").where(user).orderBy("id");
-}
+
+// function findBy(user) {
+//   return db("users").where(user).orderBy("id");
+// }
+
 function findById(id) {
   let query = db("users");
 
@@ -23,6 +25,10 @@ function findById(id) {
   } else {
     return null;
   }
+}
+
+function findBy(filter) {
+  return db("users as u").where(filter).orderBy("id");
 }
 
 function add(user) {
