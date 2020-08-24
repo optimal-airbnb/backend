@@ -1,13 +1,12 @@
-
 exports.seed = function (knex) {
   // 000-cleanup.js already cleaned out all tables
 
   const users = [
     {
-      name: "admin",// will get id 1
+      name: "admin", // will get id 1
       username: "admin",
       password: "password",
-      email: "admin@admin.com"
+      email: "admin@admin.com",
     },
   ];
 
