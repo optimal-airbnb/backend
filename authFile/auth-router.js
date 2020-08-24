@@ -31,12 +31,12 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res) => {
   let { username, password } = req.body;
 
-  Users.findBy({ username })
-    .then(([users]) => {
-      if (users && bcrypt.compareSync(password, users.password)) {
-        const token = createToken(users);
+  Users.findBy({ username: username })
+    .then(([user]) => {
+      if (user && bcrypt.compareSync(password, user.password)) {
+        const token = createToken(user);
 
-        res.status(200).json({ token, hello: users.username });
+        res.status(200).json({ token, hello: user.username });
       } else {
         res.status(401).json({ error: " You shall not pass!" });
       }
@@ -45,11 +45,12 @@ router.post("/login", (req, res) => {
       res.status(500).json({ error: error.message });
     });
 });
+
 router.get("/logout", (req, res) => {
   if (req.headers.authorization) {
-    req.headers.authorization.destroy((err) => {
+    req.destroy(req.headers.authorization, (err) => {
       if (err) {
-        res.status(500).json({ error: "could not loggout, please try again" });
+        res.status(500).json({ error: "could not logout, please try again" });
       } else {
         res.status(204).end();
       }
