@@ -47,9 +47,9 @@ function findById(id) {
   }
 }
 
-function findBy(filter) {
-  return db("users as u").where(filter).orderBy("id");
-}
+// function findBy(filter) {
+//   return db("users as u").where(filter).orderBy("id");
+// }
 
 function add(user) {
   return db("users")
