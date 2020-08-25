@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const authRouter = require("../authFile/auth-router");
 const userRouter = require("../router/userRouter");
+const propertyRouter = require('../PropertyRouter/propertyRoute');
 const restrictedMW = require("../authFile/resstrictMiddlewar");
 
 const server = express();
@@ -15,6 +16,7 @@ server.use(logger);
 
 server.use("/api/auth", authRouter);
 server.use("/api/users", restrictedMW, userRouter);
+server.use("/api/properties", restrictedMW, propertyRouter);
 
 server.get("/", (req, res) => {
   res.status(200).json({ Hello: " World, The api is working" });

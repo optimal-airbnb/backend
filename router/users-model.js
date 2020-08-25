@@ -1,4 +1,5 @@
 const db = require("../data/dbconnection");
+const mappers = require('./mapper.js')
 
 module.exports = {
   find,
@@ -9,11 +10,29 @@ module.exports = {
   remove,
 };
 
-function find() {
-  return db("users");
+function find(id) {
+  // return db("users");
+  let query = db('users');
+
+  if (id) {
+    return query
+      .where('id', id)
+      .first()
+      .then((users) => {
+        if (users) {
+          return mappers.userTobody(users);
+        } else {
+          return null;
+        }
+      });
+  } else {
+    return query.then((users) => {
+      return users.map((user) => mappers.userTobody(user));
+    });
+  }
 }
 function findBy(user) {
-  return db("users").where(user).orderBy("id");
+  return db("users").select("id", "name", "username", "password", "email").where(user).orderBy("id");
 }
 function findById(id) {
   let query = db("users");
@@ -32,10 +51,11 @@ function add(user) {
 }
 
 function update(changes, id) {
+  console.log(changes, id)
   return db("users")
     .where({ id })
     .update(changes)
-    .then((count) => (count > 0 ? findById(id) : null));
+    .then((count) => (count > 0 ? find(id) : null));
 }
 function remove(id) {
   return db("users").where("id", id).del();

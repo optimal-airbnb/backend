@@ -39,3 +39,18 @@ user login example: ## password will return the token into client side.
      "password": "rob003",
    }
 ```
+
+# Property endpoint
+
+## data Schema:
+
+```js
+{
+  "name": "propertyname", // required
+  "user_id": "users.id", //  complerment the user Id, required
+  "description": "property description", // required
+  "type": "property type" // any type of property like entier home, private room etc.
+  "location": "New York City",
+  "bedroom" : 4,
+  "bathroom": 2.5
+}
