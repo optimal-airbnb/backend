@@ -20,13 +20,23 @@ exports.up = function (knex) {
     property.string('type').notNullable();
     property.string('location', 256).notNullable();
     property.decimal('bedroom');
-    property.decimal('bathroom');  
-    property.blob('image');       
+    property.decimal('bathroom');     
+  })
+  .createTable('property_image', img => {
+    img.increments();
+    img.integer('property_id')
+      .unsigned()
+      .notNullable()
+      .references('property.id')
+      .onUpdate('CASCADE')
+      .onDelete('RESTRICT');
+    img.blob('image');  
   })
 };
 
 exports.down = function (knex) {
   return knex.schema
+  .dropTableIfExists("property_image")
   .dropTableIfExists("property")
   .dropTableIfExists("users")
   

@@ -53,4 +53,4 @@ user login example: ## password will return the token into client side.
   "location": "New York City",
   "bedroom" : 4,
   "bathroom": 2.5
-  }
+}
