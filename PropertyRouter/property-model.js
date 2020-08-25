@@ -1,5 +1,5 @@
 const db = require('../data/dbconnection')
-const mapper = require('../router/users-model')
+const mapper = require('../router/mapper.js')
 
 module.exports = {
     find,
@@ -7,7 +7,8 @@ module.exports = {
     update,
     remove,
     add,
-    getUserByProperty
+    getUserByProperty,
+    findImage
 
 }
 
@@ -49,3 +50,35 @@ function getUserByProperty(userId){
         .then(user => user.map(task => mapper.userToBody(task)));
 }
 
+function findImage(id){
+    let query = db('property_image');
+    if(id) {
+        query
+        .join('property')
+        .where('property.id', id)
+        .first();
+        const promise = [query, getPropetyImage(id)];
+        return Promise.all(promise)
+            .then( results => {
+                const [property,  image] = results;
+                if (property){
+                    property.image = image;
+                    return mapper.propertyTobody(property);
+                }else{
+                    return null;
+                }
+            });
+        
+    }else{
+        return query.then(property=> {
+            return property.map(pro => mapper.propertyTobody(pro));
+        })
+    }
+    
+}
+function getPropetyImage (propertyId){
+    return db('property')
+    .join('property_image')
+    .where('property_image.id',propertyId)
+    .then(property => property.map(image => mappers.propertyToBody(image)));
+}

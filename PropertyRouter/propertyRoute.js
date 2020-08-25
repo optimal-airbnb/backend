@@ -1,5 +1,4 @@
 const express = require('express');
-
 const Properties = require('./property-model');
 const db = require('../data/dbconnection');
 
@@ -31,25 +30,15 @@ router.get('/:id', (req, res) => {
   });
 });
 
-// router.post('/', (req, res) => {
-//   const houseData = req.body;
-//   Properties.add(houseData)
-//   .then(house => {
-//     res.status(201).json(house);
-//   })
-//   .catch (err => {
-//     res.status(500).json({ message: 'Failed to create new property' });
-//   });
-// });
 
-router.get('/:id/resources',(req, res) => {
+router.get('/:id/image',(req, res) => {
     const { id } = req.params;
-    Properties.findResource(id)
+    Properties.findImage(id)
     .then(task => {
       if (task) {
         res.json(task);
       } else {
-        res.status(404).json({ message: 'Could not find task for given property' })
+        res.status(404).json({ message: 'Could not find image for given property' })
       }
     })
     .catch(err => {

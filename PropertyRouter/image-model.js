@@ -1,12 +1,12 @@
-const db = require('../../dbConfig');
-const mappers = require('./mappers');
+const db = require('../data/dbconnection');
+const mappers = require('../router/mapper');
 
 module.exports = {
   get,
   insert,
   update,
   remove,
-  getResourceProperty,
+  getPropetyImage,
   findProperty
 };
 
@@ -32,27 +32,27 @@ function get(id) {
 }
 
 function insert(image) {
-  return db('images')
+  return db('property_image')
     .insert(image, 'id')
     .then(([id]) => get(id));
 }
 
 function update(id, changes) {
-  return db('images')
+  return db('property_image')
     .where('id', id)
     .update(changes)
     .then((count) => (count > 0 ? get(id) : null));
 }
 
 function remove(id) {
-  return db('images').where('id', id).del();
+  return db('property_image').where('id', id).del();
 }
 // find project by image Id
 function findProperty(id){
     let query = db('property');
     if(id) {
         query
-        .join('images')
+        .join('property_image')
         .where('property.id', id)
         .first();
         const promise = [query, getPropetyImage(id)];
