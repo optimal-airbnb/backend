@@ -1,5 +1,5 @@
 const db = require("../data/dbconnection");
-const mappers = require('./mapper.js')
+const mappers = require("./mapper.js");
 
 module.exports = {
   find,
@@ -12,11 +12,11 @@ module.exports = {
 
 function find(id) {
   // return db("users");
-  let query = db('users');
+  let query = db("users");
 
   if (id) {
     return query
-      .where('id', id)
+      .where("id", id)
       .first()
       .then((users) => {
         if (users) {
@@ -32,7 +32,10 @@ function find(id) {
   }
 }
 function findBy(user) {
-  return db("users").select("id", "name", "username", "password", "email").where(user).orderBy("id");
+  return db("users")
+    .select("id", "name", "username", "password", "email")
+    .where(user)
+    .orderBy("id");
 }
 function findById(id) {
   let query = db("users");
@@ -44,6 +47,10 @@ function findById(id) {
   }
 }
 
+function findBy(filter) {
+  return db("users as u").where(filter).orderBy("id");
+}
+
 function add(user) {
   return db("users")
     .insert(user, "id")
@@ -51,7 +58,7 @@ function add(user) {
 }
 
 function update(changes, id) {
-  console.log(changes, id)
+  console.log(changes, id);
   return db("users")
     .where({ id })
     .update(changes)
