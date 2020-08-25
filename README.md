@@ -30,10 +30,10 @@ https://buildweekairbnb.herokuapp.com
 
 ```js
    {
-     "name": "name",
-     "username": "username",
-     "password": "password",
-     "email": "email@email.com",
+     "name": "name", // required
+     "username": "username", // required, needs to be unique
+     "password": "password", // required
+     "email": "email@email.com", // required, needs to be unique
    }
 ```
 
@@ -56,8 +56,8 @@ user login example: ## password will return the token into client side.
 
 ```js
    {
-     "username": "username",
-     "password": "Password",
+     "username": "username", // required
+     "password": "Password", // required
    }
 ```
 
@@ -65,8 +65,8 @@ user login example: ## password will return the token into client side.
 
 ```js
    {
-     "username": "username",
-     "password": "Password",
+     "username": "username", // required
+     "password": "Password", // required
    }
 ```
 
@@ -77,10 +77,11 @@ user login example: ## password will return the token into client side.
 ```js
 {
   "name": "propertyname", // required
-  "user_id": "users.id", //  complerment the user Id, required
+  "user_id": "users.id", //  complement the user Id, required
   "description": "property description", // required
-  "type": "property type" // any type of property like entier home, private room etc.
+  "type": "property type" // any type of property like emtier home, private room etc.
   "location": "New York City",
   "bedroom" : 4,
   "bathroom": 2.5
 }
+```
