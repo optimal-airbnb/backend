@@ -19,6 +19,7 @@ https://buildweekairbnb.herokuapp.com
 | GET    | /api/users         | If the user is logged in, respond with an array of all the users contained in the database. If the user is not logged in respond with the correct status code. |
 | DELETE | /api/users/:id     | Deletes an existing user by reading the ID of the user in the database.                                                                                        |
 
+
 **Register Endpoint For Users**
 
 - name
@@ -71,7 +72,8 @@ user login example: ## password will return the token into client side.
 ```
 
 # Property endpoint
-
+| GET    | /api/properties    | If the user is logged in, will get respond data with an array of all the properties|
+| |||
 ## data Schema:
 
 ```js
@@ -84,3 +86,7 @@ user login example: ## password will return the token into client side.
   "bedroom" : 4,
   "bathroom": 2.5
 }
+```
+### Test 
+
+# Image Endpint 

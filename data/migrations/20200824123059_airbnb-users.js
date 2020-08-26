@@ -39,6 +39,5 @@ exports.down = function (knex) {
   .dropTableIfExists("property_image")
   .dropTableIfExists("property")
   .dropTableIfExists("users")
-  
-  
+   
 };
