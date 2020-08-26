@@ -42,7 +42,7 @@ router.get('/:id/image',(req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).json({ message: 'Failed to get tasks' });
+      res.status(500).json({ message: 'Failed to get image' });
     });
   });
   

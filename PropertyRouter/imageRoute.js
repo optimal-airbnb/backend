@@ -48,7 +48,7 @@ router.get('/:id/property', validateImageId, (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).json({ message: 'Failed to get project' });
+      res.status(500).json({ message: 'Failed to get property by image id' });
     });
   });
   
@@ -93,7 +93,7 @@ router.delete('/:id', validateImageId, (req, res) => {
     }else{
       res.status(404)
       .json({
-        message: "Can not found resources"
+        message: "Can not found image"
       })
     }
    
@@ -101,7 +101,7 @@ router.delete('/:id', validateImageId, (req, res) => {
   .catch(err =>{
      res.status(500)
      .json({
-    message: " Error while processing to remove the resources"
+    message: " Error while processing to remove the image"
   }, err)
   })
  
