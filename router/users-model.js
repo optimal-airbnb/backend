@@ -31,12 +31,6 @@ function find(id) {
     });
   }
 }
-// function findBy(user) {
-//   return db("users")
-//     .select("id", "name", "username", "password", "email")
-//     .where(user)
-//     .orderBy("id");
-// }
 function findById(id) {
   let query = db("users");
 
@@ -47,9 +41,9 @@ function findById(id) {
   }
 }
 
-// function findBy(filter) {
-//   return db("users as u").where(filter).orderBy("id");
-// }
+function findBy(filter) {
+  return db("users as u").where(filter).orderBy("id");
+}
 
 function add(user) {
   return db("users")
