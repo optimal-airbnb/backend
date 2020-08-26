@@ -19,12 +19,14 @@ router.post("/register", (req, res) => {
         res.status(200).json({ data: "Register succesful" });
       })
       .catch((err) =>
-        res.send({ error: err.message, message: " You crach the api" })
+        res
+          .status(500)
+          .json({ error: err.message, message: "That user already exists" })
       );
   } else {
     res
       .status(400)
-      .json({ message: " Please provide a name, username, and password" });
+      .json({ message: "Please provide a name, username, and password" });
   }
 });
 
@@ -47,16 +49,16 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-if (req.headers.authorization) {
-  req.destroy(req.headers.authorization, (err) => {
-    if (err) {
-      res.status(500).json({ error: "could not logout, please try again" });
+  if (req.headers.authorization) {
+    req.destroy(req.headers.authorization, (err) => {
+      if (err) {
+        res.status(500).json({ error: "Could not logout, please try again" });
       } else {
         res.status(204).end();
       }
     });
   } else {
-    res.status(200).json({ message: "already logged out" });
+    res.status(200).json({ message: "Already logged out" });
   }
 });
 
