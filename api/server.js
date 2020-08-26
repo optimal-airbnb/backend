@@ -21,7 +21,7 @@ server.use("/api/properties", restrictedMW, propertyRouter);
 server.use("/api/images", restrictedMW, imageRoute);
 
 server.get("/", (req, res) => {
-  res.status(200).json({ Hello: " World, The api is working" });
+  res.status(200).json({ Hello: "World, The api is working" });
 });
 function logger(req, res, next) {
   console.log(`${req.method} request the ${req.url}`, Date());

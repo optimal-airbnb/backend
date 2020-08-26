@@ -32,25 +32,25 @@ router.post("/login", (req, res) => {
   let { username, password } = req.body;
 
   Users.findBy({ username: username })
-    .then(([user]) => {
-      if (user && bcrypt.compareSync(password, user.password)) {
-        const token = createToken(user);
+  .then(([user]) => {
+    if (user && bcrypt.compareSync(password, user.password)) {
+      const token = createToken(user);
 
-        res.status(200).json({ token, hello: user.username });
-      } else {
-        res.status(401).json({ error: " You shall not pass!" });
-      }
-    })
-    .catch((error) => {
-      res.status(500).json({ error: error.message });
-    });
+      res.status(200).json({ token, hello: user.username });
+    } else {
+      res.status(401).json({ error: " You shall not pass!" });
+    }
+  })
+  .catch((error) => {
+    res.status(500).json({ error: error.message });
+  });
 });
 
 router.get("/logout", (req, res) => {
-  if (req.headers.authorization) {
-    req.destroy(req.headers.authorization, (err) => {
-      if (err) {
-        res.status(500).json({ error: "could not logout, please try again" });
+if (req.headers.authorization) {
+  req.destroy(req.headers.authorization, (err) => {
+    if (err) {
+      res.status(500).json({ error: "could not logout, please try again" });
       } else {
         res.status(204).end();
       }
@@ -64,6 +64,7 @@ function createToken(user) {
   const payload = {
     subject: user.id,
     username: user.username,
+    
   };
   const secret = secrets.jwtSecret;
   const options = {
