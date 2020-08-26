@@ -2,7 +2,6 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const Users = require("./users-model");
 
-
 router.get("/", (req, res) => {
   Users.find()
     .then((user) => {
@@ -48,8 +47,7 @@ router.put("/:id", (req, res) => {
 
   Users.find(id)
     .then((user) => {
-      if (validateUser(user)) { 
-        
+      if (validateUser(user)) {
         const rounds = process.env.HASH_ROUNDS || 8; // 8  is the number of rounds as 2 ^ 8
         const hash = bcrypt.hashSync(credentials.password, rounds);
 
@@ -85,7 +83,7 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-  function validate(req, res, next) {
+function validate(req, res, next) {
   if (req.decodedToken) {
     next();
   } else {
@@ -96,20 +94,20 @@ router.delete("/:id", (req, res) => {
 function validateUser(req, res, next) {
   // do your magic!
   Users.find(req.params.id)
-  .then(user => {
-    if(user){
-      req.user = user;
-      next();
-    }else if (!user){
-      res.status(400).json({ message: "invalid user id" })
-    }
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({
-      message: "Err while get Id"
+    .then((user) => {
+      if (user) {
+        req.user = user;
+        next();
+      } else if (!user) {
+        res.status(400).json({ message: "invalid user id" });
+      }
     })
-  })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        message: "Err while get Id",
+      });
+    });
 }
 
 module.exports = router;
