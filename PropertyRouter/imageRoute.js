@@ -68,9 +68,9 @@ router.post('/:id', validateProperty, ( req, res) => {
    
     const id = req.params.id; 
       console.log(req.params.id)
-      const resource = req.body;
-      resource.project_id = Number(id);
-  ImageDb.insert(resource)
+      const image = req.body;
+      image.property_id = Number(id);
+  ImageDb.insert(image)
       .then(act => {
         res.status(201).json(act)
       })

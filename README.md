@@ -80,7 +80,18 @@ user login example: ## password will return the token into client side.
 | GET  | /api/properties/:id   | If the user is logged in,Will  Get property by propety id|
 | PUT     | /api/properties/:id |If the user is logged in, User can  Update the property by property Id |
 | DELETE  | api/propeties/:id | If the user is logged, the user can delete property by givend the property id
-|                                              
+|       
+
+**Register Endpoint For Property list**
+
+- name (unique)
+- user_id  
+- description
+- type
+- location
+- bedroom
+- bathroom
+
 ## data Schema:
 
 ```js
@@ -99,13 +110,21 @@ user login example: ## password will return the token into client side.
 # Image Endpint 
 | Method | Endpoint           | Description                                                                                                                                                    |
 | ------ | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| POST    | /api/images     | Creates a properities  lists need to login before can create any property   |                                                                        |
+| POST    | /api/images     | Creates a properities  lists need to login before can create any property   
+
+| POST    | /api/images/:id     | Add the image to property by grap property id and add the image to the given property Id need params to passed the id   |                                                                        |
 | GET     | /api/images/:id/property  |Get property image by grab image id at the property                 |
 | GET     | /api/images    | If the user is logged in, respond with an array of all properties contained in the database. If the user is not logged in respond with the correct status code. |
 | GET  | /api/images/:id   | If the user is logged in,Will  repond image by image id|
 | PUT     | /api/images/:id |If the user is logged in, User can  Update the image by image Id |
 | DELETE  | api/images/:id | If the user is logged, the user can delete image by givend the image id
-|                                              
+|   
+
+**Register Endpoint to add image to property**
+
+- property_id
+- image
+
 ## data Schema:
 
 ```js
