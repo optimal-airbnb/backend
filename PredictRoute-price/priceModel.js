@@ -74,7 +74,6 @@ function findProperty(id){
     }
     
 }
-
 function getPropertyPrice (userId){
     return db('users')
     .join('price')
