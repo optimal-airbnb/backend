@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 // get image by image Id
 router.get('/:id', validateImageId, (req, res) => {
   // do your magic!
-  ImageDb.get(req.resource.id)
+  ImageDb.get(req.image.id)
   .then(imageId => {
     res.status(200).json(imageId)
   })
@@ -39,7 +39,7 @@ router.get('/:id', validateImageId, (req, res) => {
 // get the image by implement property_id
 router.get('/:id/property', validateImageId, (req, res) => {
     const { id } = req.params;
-    ImageDb.getPropetyImage(id)
+    ImageDb.getImageProperty(id)
     .then(property => {
       if (property) {
         res.json(property);

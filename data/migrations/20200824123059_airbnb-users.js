@@ -41,15 +41,13 @@ exports.up = function (knex) {
 
     .createTable("price", (price) => {
       price.increments();
-      price
-        .integer("user_id")
-        .unsigned()
-        .notNullable()
-        .references("users.id")
-        .onUpdate("CASCADE")
-        .onDelete("RESTRICT");
-
-      price.string("optimal-price");
+      price.string('Borough').notNullable();
+      price.string('Neighbourhood').notNullable();
+      price.string('Room_type').notNullable();
+      price.integer('Minimm-nights').notNullable();
+      price.integer('Availability_365').notNullable();  
+      price.string("optimal-price")
+      ;
     });
 };
 

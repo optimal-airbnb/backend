@@ -25,9 +25,9 @@ function findById(id){
     }
 }
 
-function add(properties){
+function add(properties ){
     return db('property')
-        .insert(properties, 'id')
+        .insert(properties,'id')
         .then(([id]) => findById(id))
 }
 
@@ -77,8 +77,7 @@ function findImage(id){
     
 }
 function getPropetyImage (propertyId){
-    return db('property')
-    .join('property_image')
-    .where('property_image.id',propertyId)
-    .then(property => property.map(image => mappers.propertyToBody(image)));
+    return db('property_image')
+    .where('property_id',propertyId)
+    .then(property => property.map(image => mapper.imageTobody(image)));
 }
