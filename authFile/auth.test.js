@@ -45,14 +45,14 @@ describe("Register", () => {
 
 describe("Login", () => {
   const testUser = {
-    username: "paewillTest",
+    username: "paewill",
     name: "paewillTest",
     email: "paewillTest@paewillTest.com",
-    password: "paewillTest",
+    password: "paewill",
   };
 
   it("Can login to existing user", async () => {
-    const data = { username: "paewillTest", password: "paewillTest" };
+    const data = { username: "paewill", password: "paewill" };
     const res = await supertest(server).post("/api/auth/login").send(data);
     expect(res.status).toBe(200);
   });

@@ -1,6 +1,7 @@
 const express = require('express');
 const Properties = require('./property-model');
 const db = require('../data/dbconnection');
+const PricePredict = require('../PredictRoute-price/priceModel')
 
 const router = express.Router();
 
