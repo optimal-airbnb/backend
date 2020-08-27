@@ -31,7 +31,6 @@ router.get('/:id', (req, res) => {
   });
 });
 
-
 router.get('/:id/image',(req, res) => {
     const { id } = req.params;
     Properties.findImage(id)
@@ -57,12 +56,12 @@ router.get('/:id/image',(req, res) => {
     .catch (err => {
       res.status(500).json({ message: 'Failed to create new property' });
     });
+
   });
 
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const changes = req.body;
-
   Properties.findById(id)
   .then(house => {
     if (house) {
@@ -94,6 +93,4 @@ const body = req.body
     res.status(500).json({ message: 'Failed to delete property' });
   });
 });
-
-
 module.exports = router;
