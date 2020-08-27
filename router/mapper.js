@@ -3,7 +3,8 @@ module.exports = {
   booleanToint,
   userTobody,
   propertyTobody,
-  imageTobody
+  imageTobody,
+  priceTobody
 };
 
 function intToBoolean(int) {
@@ -27,5 +28,10 @@ function propertyTobody(property) {
 function imageTobody(image) {
   return {
     ...image,
+  }
+}
+function priceTobody(price) {
+  return {
+    ...price,
   }
 }
