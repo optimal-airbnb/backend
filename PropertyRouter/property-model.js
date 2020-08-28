@@ -12,8 +12,26 @@ module.exports = {
 
 }
 
-function find (){
-    return db('property')
+function find (id){
+    // return db('property')
+    let query = db('property');
+
+  if (id) {
+    return query
+        .where('id', id)
+        .first()
+        .then((prop) => {
+            if (prop) {
+            return mapper.propertyTobody(prop);
+            } else {
+            return null;
+            }
+      });
+  } else {
+    return query.then((properties) => {
+      return properties.map((prop) => mapper.propertyTobody(prop));
+    });
+  }
 }
 
 function findById(id){
@@ -25,7 +43,7 @@ function findById(id){
     }
 }
 
-function add(properties ){
+function add(properties){
     return db('property')
         .insert(properties,'id')
         .then(([id]) => findById(id))
@@ -78,6 +96,7 @@ function findImage(id){
 }
 function getPropetyImage (propertyId){
     return db('property_image')
+
     .where('property_id',propertyId)
     .then(property => property.map(image => mapper.imageTobody(image)));
 }
