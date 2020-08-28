@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   Properties.find()
   .then(Properties => {
-    res.json(Properties);
+    res.status(200).json(Properties);
   })
   .catch(err => {
     res.status(500).json({ message: 'Failed to get Properties' }, err);

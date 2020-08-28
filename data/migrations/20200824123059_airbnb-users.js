@@ -41,6 +41,12 @@ exports.up = function (knex) {
 
     .createTable("price", (price) => {
       price.increments();
+        price.integer("property_id")
+        .unsigned()
+        .notNullable()
+        .references("property.id")
+        .onUpdate("CASCADE")
+        .onDelete("RESTRICT");
       price.string('Borough').notNullable();
       price.string('Neighbourhood').notNullable();
       price.string('Room_type').notNullable();

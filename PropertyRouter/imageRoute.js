@@ -25,7 +25,7 @@ router.get('/:id', validateImageId, (req, res) => {
   // do your magic!
   ImageDb.get(req.image.id)
   .then(imageId => {
-    res.status(200).json(imageId)
+    res.status(201).json(imageId)
   })
   .catch(err => {
     console.log(err)
@@ -104,7 +104,6 @@ router.delete('/:id', validateImageId, (req, res) => {
     message: " Error while processing to remove the image"
   }, err)
   })
- 
 
 });
 
@@ -113,10 +112,10 @@ router.put('/:id', validateImageId, (req, res) => {
   const newUpdate = req.body;
   ImageDb.update(req.image.id, newUpdate)
       .then(actionUpdate => {
-          res.status(200).json(actionUpdate)
+          res.status(201).json(actionUpdate)
       })
       .catch(err => {
-          res.status(500).json({ error: "The post information could not be modified." }, err)
+          res.status(500).json({ error: "The image information could not be modified." })
       })
 });
 
@@ -149,7 +148,7 @@ function validateProperty(req, res, next) {
         req.image = image;
         next();
       }else if (!image){
-        res.status(400).json({ message: "invalid user id" })
+        res.status(400).json({ message: "invalid image id" })
       }
     })
     .catch(err => {
